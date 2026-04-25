@@ -1,0 +1,339 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { useState } from "react";
+
+/* ─── Icons ─── */
+function MicIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <rect x="9" y="2" width="6" height="12" rx="3" />
+      <path d="M5 10a7 7 0 0014 0" />
+      <line x1="12" y1="20" x2="12" y2="22" />
+      <line x1="9" y1="22" x2="15" y2="22" />
+    </svg>
+  );
+}
+
+function ShieldIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z" />
+      <polyline points="9 12 11 14 15 10" />
+    </svg>
+  );
+}
+
+function ZapIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    </svg>
+  );
+}
+
+/* ─── Voice Wave ─── */
+function VoiceWave() {
+  const bars = Array.from({ length: 48 }, (_, i) => {
+    const x = i / 48;
+    const h = Math.abs(Math.sin(x * Math.PI * 4.5) * 68 + Math.sin(x * Math.PI * 9) * 22) + 8;
+    return Math.min(Math.max(h, 6), 100);
+  });
+
+  return (
+    <div className="wave-container flex items-end justify-center gap-[3px] h-14 cursor-default select-none">
+      {bars.map((h, i) => (
+        <div
+          key={i}
+          className="wave-bar rounded-full"
+          style={{
+            width: "3px",
+            height: `${h}%`,
+            background: "#A2D2FF",
+            opacity: 0.4 + (h / 100) * 0.6,
+            animationDelay: `${(i * 0.038).toFixed(2)}s`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ─── Waitlist Card (right column) ─── */
+function WaitlistCard() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "done">("idle");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setStatus("loading");
+    setTimeout(() => setStatus("done"), 1200);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 32 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+      className="w-full rounded-[28px] bg-white border border-[#A2D2FF]/35 p-8"
+      style={{ boxShadow: "0 4px 40px rgba(162,210,255,0.18), 0 1px 6px rgba(27,38,59,0.05)" }}
+    >
+      {/* Card header */}
+      <div className="mb-6">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#A2D2FF]/15 border border-[#A2D2FF]/30 mb-4">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#A2D2FF] animate-pulse" />
+          <span className="text-xs font-semibold text-[#1B263B]" style={{ fontFamily: "var(--font-dm-mono)" }}>
+            Waitlist abierto — Acceso limitado
+          </span>
+        </div>
+        <h2 className="text-xl font-bold text-[#1B263B] mb-1.5" style={{ fontFamily: "var(--font-dm-sans)" }}>
+          Reserva tu lugar gratis
+        </h2>
+        <p className="text-sm text-[#1B263B]/45 leading-relaxed">
+          Primera sesión gratuita. Sin tarjeta de crédito. Acceso anticipado con beneficios exclusivos.
+        </p>
+      </div>
+
+      {/* Form */}
+      {status === "done" ? (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="flex items-center gap-3 px-4 py-4 rounded-[18px] bg-[#A2D2FF]/12 border border-[#A2D2FF]/30"
+        >
+          <div className="w-7 h-7 rounded-full bg-[#A2D2FF] flex items-center justify-center flex-shrink-0">
+            <svg viewBox="0 0 12 12" className="w-3.5 h-3.5">
+              <path d="M2 6l3 3 5-5" stroke="#1B263B" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+          <p className="text-sm text-[#1B263B] font-semibold">
+            Estás en la lista. Te avisamos cuando abramos.
+          </p>
+        </motion.div>
+      ) : (
+        <form onSubmit={handleSubmit} id="waitlist" className="flex flex-col gap-3">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="tu@email.com"
+            required
+            className="w-full px-4 py-3.5 rounded-[14px] bg-[#F5F0E8] border border-[#A2D2FF]/25 text-[#1B263B] placeholder:text-[#1B263B]/30 text-sm outline-none focus:border-[#A2D2FF] focus:ring-3 focus:ring-[#A2D2FF]/15 transition-all duration-200"
+          />
+          <motion.button
+            type="submit"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.97 }}
+            disabled={status === "loading"}
+            className="w-full px-6 py-3.5 rounded-[14px] text-sm font-bold text-[#1B263B] bg-[#A2D2FF] hover:bg-[#B7E4C7] transition-colors duration-300 disabled:opacity-60"
+          >
+            {status === "loading" ? (
+              <span className="flex items-center justify-center gap-2">
+                <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2.5" strokeDasharray="40" strokeDashoffset="10" />
+                </svg>
+                Un momento...
+              </span>
+            ) : (
+              "Reservar mi lugar →"
+            )}
+          </motion.button>
+          <p className="text-center text-[10px] text-[#1B263B]/30" style={{ fontFamily: "var(--font-dm-mono)" }}>
+            Sin tarjeta · Sin compromiso · 100% privado
+          </p>
+        </form>
+      )}
+
+      {/* Divider */}
+      <div className="h-px bg-[#A2D2FF]/15 my-6" />
+
+      {/* Voice wave */}
+      <div className="mb-1">
+        <VoiceWave />
+        <p className="mt-2 text-center text-[9px] text-[#1B263B]/25 tracking-[0.18em] uppercase" style={{ fontFamily: "var(--font-dm-mono)" }}>
+          Análisis paralingüístico · Tiempo real
+        </p>
+      </div>
+
+      {/* Divider */}
+      <div className="h-px bg-[#A2D2FF]/15 my-6" />
+
+      {/* Stats */}
+      <div className="grid grid-cols-3 gap-3">
+        {[
+          { value: "97%", label: "Precisión" },
+          { value: "<200ms", label: "Latencia" },
+          { value: "0 bias", label: "Línea Base" },
+        ].map((s) => (
+          <div key={s.value} className="text-center py-3 px-2 rounded-[12px] bg-[#A2D2FF]/08 border border-[#A2D2FF]/20">
+            <div className="text-base font-bold text-[#1B263B]" style={{ fontFamily: "var(--font-dm-mono)" }}>
+              {s.value}
+            </div>
+            <div className="text-[9px] text-[#1B263B]/40 mt-0.5 font-medium">{s.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Science tags */}
+      <div className="mt-5 flex flex-wrap gap-1.5 justify-center">
+        {["Scherer Lab", "Hume AI", "ElevenLabs"].map((name) => (
+          <div
+            key={name}
+            className="px-2.5 py-1 rounded-lg border border-[#1B263B]/08 text-[10px] text-[#1B263B]/30 font-medium bg-transparent"
+            style={{ fontFamily: "var(--font-dm-mono)" }}
+          >
+            {name}
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─── Background decoration ─── */
+function BgDecoration() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute top-[-10%] right-[-5%] w-[420px] h-[420px] rounded-full bg-[#A2D2FF]/14 blur-[90px]" />
+      <div className="absolute bottom-[5%] left-[-3%] w-[320px] h-[320px] rounded-full bg-[#A2D2FF]/08 blur-[70px]" />
+      <div
+        className="absolute inset-0 opacity-[0.022]"
+        style={{
+          backgroundImage: "radial-gradient(circle at 1px 1px, #1B263B 1px, transparent 0)",
+          backgroundSize: "36px 36px",
+        }}
+      />
+    </div>
+  );
+}
+
+const fadeLeft = {
+  hidden: { opacity: 0, x: -24 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.65,
+      delay,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  }),
+};
+
+export default function HeroSection() {
+  return (
+    <section className="relative min-h-screen flex items-center px-6 pt-20 pb-16 overflow-hidden bg-[#F5F0E8]">
+      <BgDecoration />
+
+      <div className="relative z-10 max-w-7xl mx-auto w-full">
+        <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+
+          {/* ── Left: Text content ── */}
+          <div className="flex flex-col gap-7">
+            {/* Badge */}
+            <motion.div
+              variants={fadeLeft}
+              initial="hidden"
+              animate="visible"
+              custom={0.05}
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#A2D2FF]/35 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-[#A2D2FF]" />
+                <span className="text-xs font-semibold text-[#1B263B]/60">
+                  Inteligencia Interpersonal · Powered by AI
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Headline */}
+            <motion.div
+              variants={fadeLeft}
+              initial="hidden"
+              animate="visible"
+              custom={0.15}
+            >
+              <h1
+                className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.95] tracking-tight text-[#1B263B]"
+                style={{ fontFamily: "var(--font-dm-sans)" }}
+              >
+                Comete el error
+                <br />
+                antes de que
+                <br />
+                <span
+                  className="inline-block px-3 py-1 rounded-[12px] text-[#1B263B]"
+                  style={{ background: "#A2D2FF" }}
+                >
+                  cueste caro.
+                </span>
+              </h1>
+            </motion.div>
+
+            {/* Subheadline */}
+            <motion.p
+              variants={fadeLeft}
+              initial="hidden"
+              animate="visible"
+              custom={0.28}
+              className="text-lg text-[#1B263B]/55 max-w-lg leading-relaxed"
+            >
+              La primera IA que entrena tus Human Skills analizando tu{" "}
+              <strong className="text-[#1B263B] font-semibold">voz</strong>, no solo tus palabras.
+              Sin sesgos culturales. Sin riesgos reales.
+            </motion.p>
+
+            {/* Feature pills */}
+            <motion.div
+              variants={fadeLeft}
+              initial="hidden"
+              animate="visible"
+              custom={0.4}
+              className="flex flex-wrap gap-2"
+            >
+              {[
+                { icon: MicIcon, text: "Análisis de voz en vivo" },
+                { icon: ShieldIcon, text: "Privacidad por diseño" },
+                { icon: ZapIcon, text: "IA sin sesgos" },
+              ].map(({ icon: Icon, text }) => (
+                <div
+                  key={text}
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-white border border-[#A2D2FF]/30 shadow-sm"
+                >
+                  <Icon className="w-3.5 h-3.5 text-[#A2D2FF]" />
+                  <span className="text-xs font-medium text-[#1B263B]/65">{text}</span>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Quote / social proof */}
+            <motion.div
+              variants={fadeLeft}
+              initial="hidden"
+              animate="visible"
+              custom={0.52}
+              className="flex items-start gap-3 p-4 rounded-[16px] bg-white border border-[#A2D2FF]/20 max-w-sm"
+            >
+              <div className="w-8 h-8 rounded-full bg-[#A2D2FF]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg viewBox="0 0 16 16" fill="none" stroke="#1B263B" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                  <path d="M8 14A6 6 0 108 2a6 6 0 000 12z" />
+                  <path d="M8 8V5M8 10.5v.5" />
+                </svg>
+              </div>
+              <p className="text-xs text-[#1B263B]/50 leading-relaxed">
+                Los pilotos entrenan en simuladores antes de volar con pasajeros.{" "}
+                <span className="text-[#1B263B] font-semibold">Frank es tu simulador para conversaciones de alto riesgo.</span>
+              </p>
+            </motion.div>
+          </div>
+
+          {/* ── Right: Waitlist card ── */}
+          <div>
+            <WaitlistCard />
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}

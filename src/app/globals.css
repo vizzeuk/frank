@@ -1,26 +1,140 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* ─── Brand Palette ─── */
+  --color-frank-sky: #A2D2FF;
+  --color-frank-sky-mid: #5BAAFF;
+  --color-frank-sky-deep: #2479C7;
+  --color-frank-sky-pale: #EBF5FF;
+  --color-frank-navy: #1B263B;
+  --color-frank-navy-soft: #2D3F5A;
+  --color-frank-mint: #B7E4C7;
+  --color-frank-mint-deep: #2F9E6A;
+  --color-frank-beige: #F5F0E8;
+  --color-frank-beige-light: #FAF8F4;
+  --color-frank-warm-white: #FDFCF9;
+
+  /* ─── Typography ─── */
+  --font-dm-sans: var(--font-dm-sans-var), "DM Sans", sans-serif;
+  --font-dm-mono: var(--font-dm-mono-var), "DM Mono", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #F5F0E8;
+  color: #1B263B;
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* ─── Glassmorphism — Light Theme ─── */
+@utility glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(162, 210, 255, 0.3);
+}
+
+@utility glass-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(162, 210, 255, 0.22);
+  border-radius: 28px;
+  box-shadow:
+    0 4px 24px rgba(27, 38, 59, 0.06),
+    0 1px 4px rgba(27, 38, 59, 0.04);
+}
+
+@utility card-surface {
+  background: #FFFFFF;
+  border: 1px solid rgba(162, 210, 255, 0.25);
+  border-radius: 28px;
+  box-shadow: 0 2px 16px rgba(27, 38, 59, 0.05);
+}
+
+/* ─── Glow effects ─── */
+@utility glow-sky {
+  box-shadow:
+    0 0 0 1px rgba(162, 210, 255, 0.4),
+    0 4px 20px rgba(91, 170, 255, 0.2);
+}
+
+@utility glow-mint {
+  box-shadow: 0 4px 20px rgba(47, 158, 106, 0.18);
+}
+
+/* ─── Sky blue highlight text ─── */
+@utility text-sky-highlight {
+  color: #1B263B;
+  background: #A2D2FF;
+  border-radius: 8px;
+  padding: 0 6px;
+}
+
+@utility text-gradient-sky {
+  background: linear-gradient(135deg, #A2D2FF 0%, #B7E4C7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility text-gradient-hero {
+  background: linear-gradient(135deg, #1B263B 0%, #1B263B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Voice wave bars ─── */
+@keyframes wave-idle {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.2); }
+}
+
+@keyframes wave-active {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.1); }
+}
+
+.wave-bar {
+  animation: wave-idle 2s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+
+.wave-container:hover .wave-bar {
+  animation-name: wave-active;
+  animation-duration: 0.65s;
+}
+
+/* ─── Terminal cursor blink ─── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ─── Node pulse ─── */
+@keyframes node-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(91, 170, 255, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(91, 170, 255, 0); }
+}
+.node-pulse {
+  animation: node-pulse 2.5s ease-in-out infinite;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #F5F0E8; }
+::-webkit-scrollbar-thumb { background: rgba(91, 170, 255, 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(91, 170, 255, 0.5); }
