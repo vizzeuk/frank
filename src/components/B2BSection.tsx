@@ -600,14 +600,6 @@ export default function B2BSection() {
               </div>
             ))}
 
-            <motion.a
-              href="#waitlist"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
-              className="self-start mt-2 px-6 py-3 rounded-full text-sm font-semibold text-[#f5f0e8] bg-[#e07a3f] hover:bg-[#b05a25] transition-colors duration-300 shadow-sm"
-            >
-              Solicitar demo empresarial
-            </motion.a>
           </motion.div>
         </div>
       </div>

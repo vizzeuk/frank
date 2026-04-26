@@ -2,41 +2,16 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-
-function WaveIcon({ className }: { className?: string }) {
-  const heights = [4, 7, 10, 12, 10, 7, 4];
-  return (
-    <svg viewBox="0 0 28 16" fill="none" className={className}>
-      {heights.map((h, i) => (
-        <rect
-          key={i}
-          x={i * 4}
-          y={(12 - h) / 2}
-          width="2.5"
-          height={h}
-          rx="1.25"
-          fill="currentColor"
-        />
-      ))}
-    </svg>
-  );
-}
+import Image from "next/image";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const links = [
-    { label: "Producto", href: "#producto" },
-    { label: "Empresa", href: "#empresa" },
-    { label: "FAQ", href: "#faq" },
-  ];
 
   return (
     <motion.nav
@@ -49,90 +24,19 @@ export default function Navbar() {
           : "py-5 bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5 group">
-          <div className="w-7 h-7 rounded-[8px] bg-[#e07a3f] flex items-center justify-center group-hover:bg-[#b05a25] transition-colors duration-300">
-            <WaveIcon className="w-4 h-3.5 text-[#f5f0e8]" />
-          </div>
-          <span className="text-lg font-bold tracking-tight text-[#f5f0e8]" style={{ fontFamily: "var(--font-dm-sans)" }}>
-            frank<span className="text-[#e07a3f]">.</span>
-          </span>
+      <div className="max-w-7xl mx-auto px-6">
+        <a href="#" className="block w-fit">
+          <Image
+            src="/logo-frank/BLANCO FRANK..png"
+            alt="Frank"
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="h-8 w-auto object-contain"
+            priority
+          />
         </a>
-
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-[#f5f0e8]/50 hover:text-[#e07a3f] transition-colors duration-200"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="hidden md:flex items-center gap-3">
-          <motion.a
-            href="#waitlist"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.97 }}
-            className="px-5 py-2.5 rounded-full text-sm font-semibold text-[#f5f0e8] bg-[#e07a3f] hover:bg-[#b05a25] transition-colors duration-300"
-          >
-            Unirme al Waitlist
-          </motion.a>
-        </div>
-
-        {/* Mobile burger */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          aria-label="Toggle menu"
-        >
-          <motion.span
-            animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-            className="block w-5 h-0.5 bg-[#f5f0e8]"
-          />
-          <motion.span
-            animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="block w-5 h-0.5 bg-[#f5f0e8]"
-          />
-          <motion.span
-            animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-            className="block w-5 h-0.5 bg-[#f5f0e8]"
-          />
-        </button>
       </div>
-
-      {/* Mobile menu */}
-      <motion.div
-        initial={false}
-        animate={menuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
-        transition={{ duration: 0.28, ease: "easeInOut" }}
-        className="md:hidden overflow-hidden bg-[#0f0f0f]/95 backdrop-blur-xl border-t border-[#e07a3f]/12"
-      >
-        <div className="px-6 py-4 flex flex-col gap-4">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="text-sm font-medium text-[#f5f0e8]/55 hover:text-[#e07a3f] transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href="#waitlist"
-            onClick={() => setMenuOpen(false)}
-            className="mt-2 px-5 py-3 rounded-full text-sm font-semibold text-[#f5f0e8] bg-[#e07a3f] text-center"
-          >
-            Unirme al Waitlist
-          </a>
-        </div>
-      </motion.div>
     </motion.nav>
   );
 }

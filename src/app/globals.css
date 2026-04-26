@@ -110,6 +110,18 @@ body {
   animation: node-pulse 2.5s ease-in-out infinite;
 }
 
+/* ─── Planet atmospheric drift ─── */
+@keyframes drift-surface {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-180px); }
+}
+
+/* ─── Neural node attention ring ─── */
+@keyframes node-ring {
+  0%   { transform: translate(-50%, -50%) scale(0.9); opacity: 0.55; }
+  100% { transform: translate(-50%, -50%) scale(3.2); opacity: 0; }
+}
+
 /* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: #0f0f0f; }

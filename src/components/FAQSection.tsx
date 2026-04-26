@@ -168,34 +168,6 @@ export default function FAQSection() {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: 0.25, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-          className="mt-12 p-8 rounded-[24px] bg-[#1a1a1a] border border-[#e07a3f]/15 text-center"
-        >
-          <div className="w-12 h-12 rounded-[14px] bg-[#e07a3f] flex items-center justify-center mx-auto mb-4">
-            <svg viewBox="0 0 20 20" fill="none" stroke="#0f0f0f" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-              <path d="M10 2v4M10 14v4M4.22 4.22l2.83 2.83M12.95 12.95l2.83 2.83M2 10h4M14 10h4M4.22 15.78l2.83-2.83M12.95 7.05l2.83-2.83" />
-            </svg>
-          </div>
-          <h3 className="text-xl font-bold text-[#f5f0e8]/90 mb-2" style={{ fontFamily: "var(--font-dm-sans)" }}>
-            Listo para entrenar diferente
-          </h3>
-          <p className="text-sm text-[#f5f0e8]/45 mb-6 max-w-sm mx-auto">
-            Únete al waitlist. Primera sesión gratuita. Sin tarjeta de crédito requerida.
-          </p>
-          <motion.a
-            href="#waitlist"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.97 }}
-            className="inline-flex px-7 py-3.5 rounded-full font-semibold text-sm text-[#f5f0e8] bg-[#e07a3f] hover:bg-[#b05a25] transition-colors duration-300 shadow-sm"
-          >
-            Reservar mi lugar
-          </motion.a>
-        </motion.div>
       </div>
     </section>
   );
