@@ -1,18 +1,13 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ─── Brand Palette ─── */
-  --color-frank-sky: #A2D2FF;
-  --color-frank-sky-mid: #5BAAFF;
-  --color-frank-sky-deep: #2479C7;
-  --color-frank-sky-pale: #EBF5FF;
-  --color-frank-navy: #1B263B;
-  --color-frank-navy-soft: #2D3F5A;
-  --color-frank-mint: #B7E4C7;
-  --color-frank-mint-deep: #2F9E6A;
-  --color-frank-beige: #F5F0E8;
-  --color-frank-beige-light: #FAF8F4;
-  --color-frank-warm-white: #FDFCF9;
+  /* ─── Brand Palette — Ember Dark ─── */
+  --color-frank-void: #0f0f0f;
+  --color-frank-base: #1a1a1a;
+  --color-frank-warm-white: #f5f0e8;
+  --color-frank-ember: #e07a3f;
+  --color-frank-ember-deep: #b05a25;
+  --color-frank-amber: #d4a96a;
 
   /* ─── Typography ─── */
   --font-dm-sans: var(--font-dm-sans-var), "DM Sans", sans-serif;
@@ -28,70 +23,52 @@ html {
 }
 
 body {
-  background: #F5F0E8;
-  color: #1B263B;
+  background: #0f0f0f;
+  color: #f5f0e8;
   font-family: var(--font-dm-sans), "DM Sans", sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-/* ─── Glassmorphism — Light Theme ─── */
+/* ─── Glassmorphism — Dark Theme ─── */
 @utility glass {
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(26, 26, 26, 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(162, 210, 255, 0.3);
+  border: 1px solid rgba(224, 122, 63, 0.15);
 }
 
 @utility glass-card {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(26, 26, 26, 0.92);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(162, 210, 255, 0.22);
+  border: 1px solid rgba(224, 122, 63, 0.15);
   border-radius: 28px;
   box-shadow:
-    0 4px 24px rgba(27, 38, 59, 0.06),
-    0 1px 4px rgba(27, 38, 59, 0.04);
+    0 4px 24px rgba(0, 0, 0, 0.35),
+    0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 @utility card-surface {
-  background: #FFFFFF;
-  border: 1px solid rgba(162, 210, 255, 0.25);
+  background: #1a1a1a;
+  border: 1px solid rgba(224, 122, 63, 0.12);
   border-radius: 28px;
-  box-shadow: 0 2px 16px rgba(27, 38, 59, 0.05);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
 }
 
-/* ─── Glow effects ─── */
-@utility glow-sky {
+/* ─── Glow effect ─── */
+@utility glow-ember {
   box-shadow:
-    0 0 0 1px rgba(162, 210, 255, 0.4),
-    0 4px 20px rgba(91, 170, 255, 0.2);
+    0 0 0 1px rgba(224, 122, 63, 0.3),
+    0 4px 20px rgba(224, 122, 63, 0.15);
 }
 
-@utility glow-mint {
-  box-shadow: 0 4px 20px rgba(47, 158, 106, 0.18);
-}
-
-/* ─── Sky blue highlight text ─── */
-@utility text-sky-highlight {
-  color: #1B263B;
-  background: #A2D2FF;
+/* ─── Ember highlight text ─── */
+@utility text-ember-highlight {
+  color: #0f0f0f;
+  background: #e07a3f;
   border-radius: 8px;
   padding: 0 6px;
-}
-
-@utility text-gradient-sky {
-  background: linear-gradient(135deg, #A2D2FF 0%, #B7E4C7 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@utility text-gradient-hero {
-  background: linear-gradient(135deg, #1B263B 0%, #1B263B 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 /* ─── Voice wave bars ─── */
@@ -126,8 +103,8 @@ body {
 
 /* ─── Node pulse ─── */
 @keyframes node-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(91, 170, 255, 0.4); }
-  50% { box-shadow: 0 0 0 6px rgba(91, 170, 255, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(224, 122, 63, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(224, 122, 63, 0); }
 }
 .node-pulse {
   animation: node-pulse 2.5s ease-in-out infinite;
@@ -135,6 +112,6 @@ body {
 
 /* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #F5F0E8; }
-::-webkit-scrollbar-thumb { background: rgba(91, 170, 255, 0.3); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(91, 170, 255, 0.5); }
+::-webkit-scrollbar-track { background: #0f0f0f; }
+::-webkit-scrollbar-thumb { background: rgba(224, 122, 63, 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(224, 122, 63, 0.5); }

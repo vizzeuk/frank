@@ -170,7 +170,7 @@ function TerminalPanel({ tab }: { tab: TabData }) {
   }, [lineIndex, tab.terminalLines, tab.id]);
 
   return (
-    <div className="relative h-full flex flex-col bg-[#0C1522] overflow-hidden">
+    <div className="relative h-full flex flex-col bg-[#0a0a0a] overflow-hidden">
       {/* Terminal top bar */}
       <div className="flex items-center justify-between px-5 py-3 border-b border-white/5 flex-shrink-0">
         <div className="flex gap-1.5">
@@ -178,7 +178,7 @@ function TerminalPanel({ tab }: { tab: TabData }) {
             <div key={i} className="w-3 h-3 rounded-full" style={{ background: c, opacity: 0.8 }} />
           ))}
         </div>
-        <span className="text-[11px] text-white/25" style={{ fontFamily: "var(--font-dm-mono)" }}>
+        <span className="text-[11px] text-[#f5f0e8]/25" style={{ fontFamily: "var(--font-dm-mono)" }}>
           frank.ai / vocal-analysis
         </span>
         <div className="w-16" />
@@ -195,14 +195,14 @@ function TerminalPanel({ tab }: { tab: TabData }) {
                 <span
                   className={`text-[12.5px] leading-relaxed block ${
                     line.startsWith(">")
-                      ? "text-[#A2D2FF]"
+                      ? "text-[#e07a3f]"
                       : line.includes("✓")
-                      ? "text-[#B7E4C7]"
+                      ? "text-[#d4a96a]"
                       : line.includes("⚠") || line.includes("Alerta")
                       ? "text-[#FFD580]"
                       : line.includes("Sugerencia") || line.includes("Insight")
-                      ? "text-[#A2D2FF]/70"
-                      : "text-white/55"
+                      ? "text-[#e07a3f]/70"
+                      : "text-[#f5f0e8]/55"
                   }`}
                   style={{ fontFamily: "var(--font-dm-mono)" }}
                 >
@@ -212,7 +212,7 @@ function TerminalPanel({ tab }: { tab: TabData }) {
             </div>
           ))}
           {lineIndex < tab.terminalLines.length && (
-            <span className="text-[#A2D2FF] cursor-blink text-sm" style={{ fontFamily: "var(--font-dm-mono)" }}>
+            <span className="text-[#e07a3f] cursor-blink text-sm" style={{ fontFamily: "var(--font-dm-mono)" }}>
               _
             </span>
           )}
@@ -228,32 +228,32 @@ function TerminalPanel({ tab }: { tab: TabData }) {
           transition={{ delay: 0.3, duration: 0.5 }}
           className="rounded-[16px] px-4 py-3 border"
           style={{
-            background: "rgba(255,255,255,0.06)",
+            background: "rgba(255,255,255,0.04)",
             backdropFilter: "blur(12px)",
-            borderColor: "rgba(162,210,255,0.18)",
+            borderColor: "rgba(224,122,63,0.18)",
             maxWidth: "220px",
           }}
         >
           <div className="flex items-center gap-2 mb-1.5">
-            <div className="w-5 h-5 rounded-full bg-[#A2D2FF]/30 flex items-center justify-center">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#A2D2FF] animate-pulse" />
+            <div className="w-5 h-5 rounded-full bg-[#e07a3f]/20 flex items-center justify-center">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#e07a3f] animate-pulse" />
             </div>
-            <span className="text-[10px] font-semibold text-white/50 uppercase tracking-wider" style={{ fontFamily: "var(--font-dm-mono)" }}>
+            <span className="text-[10px] font-semibold text-[#f5f0e8]/50 uppercase tracking-wider" style={{ fontFamily: "var(--font-dm-mono)" }}>
               Frank Studio
             </span>
-            <span className="text-[10px] text-white/25" style={{ fontFamily: "var(--font-dm-mono)" }}>
+            <span className="text-[10px] text-[#f5f0e8]/25" style={{ fontFamily: "var(--font-dm-mono)" }}>
               Ahora
             </span>
           </div>
-          <p className="text-xs text-white/75 leading-relaxed font-medium">
+          <p className="text-xs text-[#f5f0e8]/75 leading-relaxed font-medium">
             {tab.triggerDetail}
           </p>
         </motion.div>
 
         {/* DISPARADOR label */}
         <div className="flex items-center gap-1.5 mt-2 ml-1">
-          <div className="w-4 h-px bg-white/25" />
-          <span className="text-[9px] font-bold tracking-[0.15em] text-white/25 uppercase" style={{ fontFamily: "var(--font-dm-mono)" }}>
+          <div className="w-4 h-px bg-[#f5f0e8]/25" />
+          <span className="text-[9px] font-bold tracking-[0.15em] text-[#f5f0e8]/25 uppercase" style={{ fontFamily: "var(--font-dm-mono)" }}>
             Disparador
           </span>
         </div>
@@ -261,10 +261,10 @@ function TerminalPanel({ tab }: { tab: TabData }) {
 
       {/* ANÁLISIS label */}
       <div className="absolute top-16 right-4">
-        <span className="text-[9px] font-bold tracking-[0.15em] text-white/25 uppercase" style={{ fontFamily: "var(--font-dm-mono)" }}>
+        <span className="text-[9px] font-bold tracking-[0.15em] text-[#f5f0e8]/25 uppercase" style={{ fontFamily: "var(--font-dm-mono)" }}>
           Análisis Vocal
         </span>
-        <div className="w-full h-px bg-white/20 mt-1" />
+        <div className="w-full h-px bg-[#f5f0e8]/15 mt-1" />
       </div>
     </div>
   );
@@ -293,22 +293,22 @@ function NeuralGraphPanel({ tab }: { tab: TabData }) {
   });
 
   const nodeColors = {
-    input: { bg: "rgba(27,38,59,0.06)", border: "rgba(27,38,59,0.15)", text: "#1B263B" },
-    process: { bg: "rgba(162,210,255,0.12)", border: "rgba(91,170,255,0.3)", text: "#A2D2FF" },
-    output: { bg: "rgba(183,228,199,0.18)", border: "rgba(47,158,106,0.3)", text: "#2F9E6A" },
+    input: { bg: "rgba(245,240,232,0.04)", border: "rgba(245,240,232,0.12)", text: "rgba(245,240,232,0.45)" },
+    process: { bg: "rgba(224,122,63,0.12)", border: "rgba(224,122,63,0.35)", text: "#e07a3f" },
+    output: { bg: "rgba(212,169,106,0.15)", border: "rgba(212,169,106,0.40)", text: "#d4a96a" },
   };
 
   return (
     <div
       ref={containerRef}
-      className="relative flex-1 bg-[#F5F0E8] overflow-hidden"
+      className="relative flex-1 bg-[#111111] overflow-hidden"
       style={{ minHeight: 380 }}
     >
       {/* SVG edges */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
         <defs>
           <marker id="arrowhead" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
-            <polygon points="0 0, 6 2, 0 4" fill="rgba(36,121,199,0.35)" />
+            <polygon points="0 0, 6 2, 0 4" fill="rgba(224,122,63,0.35)" />
           </marker>
         </defs>
           {tab.edges.map((edge, i) => {
@@ -323,7 +323,7 @@ function NeuralGraphPanel({ tab }: { tab: TabData }) {
                 key={`${tab.id}-${i}`}
                 d={`M${from.x},${from.y} Q${cx},${from.y} ${to.x},${to.y}`}
                 fill="none"
-                stroke="rgba(36,121,199,0.25)"
+                stroke="rgba(224,122,63,0.22)"
                 strokeWidth="1"
                 strokeDasharray="4 3"
                 markerEnd="url(#arrowhead)"
@@ -377,9 +377,9 @@ function NeuralGraphPanel({ tab }: { tab: TabData }) {
 
       {/* RESULTADO label */}
       <div className="absolute bottom-4 right-4 flex items-center gap-1.5">
-        <div className="h-px w-4 bg-[#2F9E6A]/40" />
+        <div className="h-px w-4 bg-[#d4a96a]/40" />
         <span
-          className="text-[9px] font-bold tracking-[0.15em] text-[#2F9E6A]/60 uppercase"
+          className="text-[9px] font-bold tracking-[0.15em] text-[#d4a96a]/60 uppercase"
           style={{ fontFamily: "var(--font-dm-mono)" }}
         >
           Resultado
@@ -390,7 +390,7 @@ function NeuralGraphPanel({ tab }: { tab: TabData }) {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: "radial-gradient(circle at 1px 1px, rgba(36,121,199,0.08) 1px, transparent 0)",
+          backgroundImage: "radial-gradient(circle at 1px 1px, rgba(224,122,63,0.06) 1px, transparent 0)",
           backgroundSize: "28px 28px",
           zIndex: 0,
         }}
@@ -411,9 +411,9 @@ export default function B2BSection() {
   ];
 
   return (
-    <section id="empresa" className="relative py-28 px-6 bg-white overflow-hidden">
+    <section id="empresa" className="relative py-28 px-6 bg-[#1a1a1a] overflow-hidden">
       {/* Subtle top border */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-px bg-gradient-to-r from-transparent via-[#A2D2FF]/30 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-px bg-gradient-to-r from-transparent via-[#e07a3f]/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -424,30 +424,30 @@ export default function B2BSection() {
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F5F0E8] border border-[#A2D2FF]/30 mb-6">
-            <span className="text-xs font-semibold text-[#A2D2FF]">Para Directores de RRHH y Talent</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0f0f0f] border border-[#e07a3f]/25 mb-6">
+            <span className="text-xs font-semibold text-[#e07a3f]">Para Directores de RRHH y Talent</span>
           </div>
           <h2
-            className="text-4xl md:text-6xl font-bold mb-5 text-[#1B263B] tracking-tight leading-[1.05]"
+            className="text-4xl md:text-6xl font-bold mb-5 text-[#f5f0e8] tracking-tight leading-[1.05]"
             style={{ fontFamily: "var(--font-dm-sans)" }}
           >
             Convierte la intuición
             <br />
-            <span className="inline-block bg-[#A2D2FF] text-[#1B263B] px-3 rounded-[10px]">en datos objetivos.</span>
+            <span className="inline-block bg-[#e07a3f] text-[#0f0f0f] px-3 rounded-[10px]">en datos objetivos.</span>
           </h2>
-          <p className="text-lg text-[#1B263B]/50 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-[#f5f0e8]/50 max-w-2xl mx-auto leading-relaxed">
             Filtra talento y capacita equipos con métricas objetivas de inteligencia interpersonal. Sin sesgos de género, cultura ni entrevistador.
           </p>
         </motion.div>
 
-        {/* ─── Main showcase (Sanity-inspired) ─── */}
+        {/* ─── Main showcase ─── */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-          className="mb-16 rounded-[24px] overflow-hidden border border-[#A2D2FF]/20 shadow-xl"
-          style={{ boxShadow: "0 8px 48px rgba(27,38,59,0.1), 0 2px 8px rgba(27,38,59,0.06)" }}
+          className="mb-16 rounded-[24px] overflow-hidden border border-[#e07a3f]/15"
+          style={{ boxShadow: "0 8px 48px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)" }}
         >
           {/* Main panels */}
           <div className="flex flex-col lg:flex-row" style={{ minHeight: 420 }}>
@@ -469,9 +469,9 @@ export default function B2BSection() {
             </div>
 
             {/* Divider */}
-            <div className="w-px bg-gradient-to-b from-white/10 via-white/5 to-white/10 hidden lg:block" />
+            <div className="w-px bg-gradient-to-b from-[#f5f0e8]/05 via-[#f5f0e8]/03 to-[#f5f0e8]/05 hidden lg:block" />
 
-            {/* Graph (light) */}
+            {/* Graph */}
             <div className="flex-1 flex" style={{ minHeight: 380 }}>
               <AnimatePresence mode="wait">
                 <motion.div
@@ -489,22 +489,22 @@ export default function B2BSection() {
           </div>
 
           {/* Tab bar */}
-          <div className="flex border-t border-[#A2D2FF]/15 bg-[#F5F0E8]/60 overflow-x-auto">
+          <div className="flex border-t border-[#e07a3f]/10 bg-[#0f0f0f]/80 overflow-x-auto">
             {TABS.map((tab, i) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTabId(tab.id)}
                 className={`relative flex items-center gap-2 px-6 py-4 text-xs font-bold tracking-[0.1em] whitespace-nowrap transition-colors duration-200 flex-1 justify-center ${
                   activeTabId === tab.id
-                    ? "text-[#1B263B] bg-white border-r border-[#A2D2FF]/15"
-                    : "text-[#1B263B]/35 hover:text-[#1B263B]/65"
-                } ${i < TABS.length - 1 ? "border-r border-[#A2D2FF]/10" : ""}`}
+                    ? "text-[#f5f0e8] bg-[#1a1a1a] border-r border-[#e07a3f]/10"
+                    : "text-[#f5f0e8]/30 hover:text-[#f5f0e8]/60"
+                } ${i < TABS.length - 1 ? "border-r border-[#f5f0e8]/05" : ""}`}
                 style={{ fontFamily: "var(--font-dm-mono)" }}
               >
                 {activeTabId === tab.id && (
                   <motion.div
                     layoutId="tab-indicator"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#A2D2FF]"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#e07a3f]"
                   />
                 )}
                 {tab.label}
@@ -523,7 +523,7 @@ export default function B2BSection() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
             className="flex flex-col gap-4"
           >
-            <h3 className="text-sm font-semibold text-[#1B263B]/35 uppercase tracking-widest mb-2" style={{ fontFamily: "var(--font-dm-mono)" }}>
+            <h3 className="text-sm font-semibold text-[#f5f0e8]/35 uppercase tracking-widest mb-2" style={{ fontFamily: "var(--font-dm-mono)" }}>
               El problema que resolvemos
             </h3>
             {stats.map((s, i) => (
@@ -533,15 +533,15 @@ export default function B2BSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: i * 0.08 }}
-                className="flex items-start gap-4 p-5 rounded-[20px] bg-[#F5F0E8] border border-[#A2D2FF]/15"
+                className="flex items-start gap-4 p-5 rounded-[20px] bg-[#0f0f0f] border border-[#e07a3f]/12"
               >
                 <span
-                  className="text-2xl font-bold text-[#1B263B] flex-shrink-0 leading-none pt-0.5"
+                  className="text-2xl font-bold text-[#f5f0e8] flex-shrink-0 leading-none pt-0.5"
                   style={{ fontFamily: "var(--font-dm-mono)" }}
                 >
                   {s.value}
                 </span>
-                <p className="text-sm text-[#1B263B]/50 leading-relaxed">{s.label}</p>
+                <p className="text-sm text-[#f5f0e8]/50 leading-relaxed">{s.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -554,7 +554,7 @@ export default function B2BSection() {
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
             className="flex flex-col gap-6"
           >
-            <h3 className="text-sm font-semibold text-[#1B263B]/35 uppercase tracking-widest mb-2" style={{ fontFamily: "var(--font-dm-mono)" }}>
+            <h3 className="text-sm font-semibold text-[#f5f0e8]/35 uppercase tracking-widest mb-2" style={{ fontFamily: "var(--font-dm-mono)" }}>
               Lo que Frank entrega
             </h3>
             {[
@@ -590,12 +590,12 @@ export default function B2BSection() {
               },
             ].map((prop) => (
               <div key={prop.title} className="flex gap-4 items-start">
-                <div className="w-9 h-9 rounded-[10px] flex items-center justify-center bg-[#A2D2FF]/15 text-[#1B263B] flex-shrink-0 border border-[#A2D2FF]/30">
+                <div className="w-9 h-9 rounded-[10px] flex items-center justify-center bg-[#e07a3f]/12 text-[#e07a3f] flex-shrink-0 border border-[#e07a3f]/25">
                   {prop.icon}
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-[#1B263B]/85 mb-1">{prop.title}</h4>
-                  <p className="text-sm text-[#1B263B]/45 leading-relaxed">{prop.desc}</p>
+                  <h4 className="text-sm font-bold text-[#f5f0e8]/85 mb-1">{prop.title}</h4>
+                  <p className="text-sm text-[#f5f0e8]/45 leading-relaxed">{prop.desc}</p>
                 </div>
               </div>
             ))}
@@ -604,7 +604,7 @@ export default function B2BSection() {
               href="#waitlist"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
-              className="self-start mt-2 px-6 py-3 rounded-full text-sm font-semibold text-white bg-[#1B263B] hover:bg-[#A2D2FF] transition-colors duration-300 shadow-sm"
+              className="self-start mt-2 px-6 py-3 rounded-full text-sm font-semibold text-[#f5f0e8] bg-[#e07a3f] hover:bg-[#b05a25] transition-colors duration-300 shadow-sm"
             >
               Solicitar demo empresarial
             </motion.a>

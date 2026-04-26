@@ -19,21 +19,21 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#1B263B] text-[#F0F8FF]">
+    <footer className="bg-[#0a0a0a] text-[#f5f0e8]">
       <div className="max-w-7xl mx-auto px-6 py-16">
         {/* Top grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-7 h-7 rounded-[7px] bg-[#A2D2FF]/15 flex items-center justify-center text-[#A2D2FF]">
+              <div className="w-7 h-7 rounded-[7px] bg-[#e07a3f]/15 flex items-center justify-center text-[#e07a3f]">
                 <WaveIcon />
               </div>
-              <span className="text-lg font-bold text-white" style={{ fontFamily: "var(--font-dm-sans)" }}>
-                frank<span className="text-[#A2D2FF]">.</span>
+              <span className="text-lg font-bold text-[#f5f0e8]" style={{ fontFamily: "var(--font-dm-sans)" }}>
+                frank<span className="text-[#e07a3f]">.</span>
               </span>
             </div>
-            <p className="text-sm text-white/35 leading-relaxed max-w-xs mb-5" style={{ fontFamily: "var(--font-dm-sans)" }}>
+            <p className="text-sm text-[#f5f0e8]/35 leading-relaxed max-w-xs mb-5" style={{ fontFamily: "var(--font-dm-sans)" }}>
               Inteligencia Interpersonal potenciada por análisis paralingüístico. Entrena tus Human Skills con datos, no suposiciones.
             </p>
 
@@ -41,9 +41,9 @@ export default function Footer() {
             <div
               className="inline-flex items-center gap-2 px-3 py-2 rounded-full text-xs font-medium"
               style={{
-                background: "rgba(183,228,199,0.08)",
-                border: "1px solid rgba(183,228,199,0.2)",
-                color: "#B7E4C7",
+                background: "rgba(224,122,63,0.08)",
+                border: "1px solid rgba(224,122,63,0.18)",
+                color: "#e07a3f",
                 fontFamily: "var(--font-dm-mono)",
               }}
             >
@@ -59,7 +59,7 @@ export default function Footer() {
           {Object.entries(cols).map(([category, items]) => (
             <div key={category}>
               <h4
-                className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-4"
+                className="text-[10px] font-bold uppercase tracking-widest text-[#f5f0e8]/30 mb-4"
                 style={{ fontFamily: "var(--font-dm-mono)" }}
               >
                 {category}
@@ -69,7 +69,7 @@ export default function Footer() {
                   <li key={item}>
                     <a
                       href="#"
-                      className="text-sm text-white/30 hover:text-[#A2D2FF] transition-colors duration-200"
+                      className="text-sm text-[#f5f0e8]/30 hover:text-[#e07a3f] transition-colors duration-200"
                       style={{ fontFamily: "var(--font-dm-sans)" }}
                     >
                       {item}
@@ -82,16 +82,16 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8" />
+        <div className="h-px bg-gradient-to-r from-transparent via-[#f5f0e8]/08 to-transparent mb-8" />
 
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/20" style={{ fontFamily: "var(--font-dm-sans)" }}>
+          <p className="text-xs text-[#f5f0e8]/20" style={{ fontFamily: "var(--font-dm-sans)" }}>
             {year} Frank. Todos los derechos reservados.
           </p>
 
           <div className="flex items-center gap-4">
-            <span className="text-xs text-white/15 hidden sm:block" style={{ fontFamily: "var(--font-dm-mono)" }}>
+            <span className="text-xs text-[#f5f0e8]/15 hidden sm:block" style={{ fontFamily: "var(--font-dm-mono)" }}>
               Scherer Lab · Hume AI · ElevenLabs
             </span>
 
@@ -105,7 +105,7 @@ export default function Footer() {
                 <a
                   key={s.label}
                   href="#"
-                  className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/25 hover:text-[#A2D2FF] hover:border-[#A2D2FF]/30 transition-all duration-200"
+                  className="w-8 h-8 rounded-full border border-[#f5f0e8]/10 flex items-center justify-center text-[#f5f0e8]/25 hover:text-[#e07a3f] hover:border-[#e07a3f]/30 transition-all duration-200"
                   aria-label={s.label}
                 >
                   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">

@@ -35,7 +35,6 @@ export default function Navbar() {
   const links = [
     { label: "Producto", href: "#producto" },
     { label: "Empresa", href: "#empresa" },
-    { label: "Ciencia", href: "#ciencia" },
     { label: "FAQ", href: "#faq" },
   ];
 
@@ -46,18 +45,18 @@ export default function Navbar() {
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
         scrolled
-          ? "py-3 bg-[#FAF8F4]/90 backdrop-blur-xl border-b border-[#A2D2FF]/20 shadow-sm"
+          ? "py-3 bg-[#0f0f0f]/90 backdrop-blur-xl border-b border-[#e07a3f]/15 shadow-sm"
           : "py-5 bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2.5 group">
-          <div className="w-7 h-7 rounded-[8px] bg-[#1B263B] flex items-center justify-center group-hover:bg-[#A2D2FF] transition-colors duration-300">
-            <WaveIcon className="w-4 h-3.5 text-[#A2D2FF]" />
+          <div className="w-7 h-7 rounded-[8px] bg-[#e07a3f] flex items-center justify-center group-hover:bg-[#b05a25] transition-colors duration-300">
+            <WaveIcon className="w-4 h-3.5 text-[#f5f0e8]" />
           </div>
-          <span className="text-lg font-bold tracking-tight text-[#1B263B]" style={{ fontFamily: "var(--font-dm-sans)" }}>
-            frank<span className="text-[#A2D2FF]">.</span>
+          <span className="text-lg font-bold tracking-tight text-[#f5f0e8]" style={{ fontFamily: "var(--font-dm-sans)" }}>
+            frank<span className="text-[#e07a3f]">.</span>
           </span>
         </a>
 
@@ -67,7 +66,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-[#1B263B]/55 hover:text-[#A2D2FF] transition-colors duration-200"
+              className="text-sm font-medium text-[#f5f0e8]/50 hover:text-[#e07a3f] transition-colors duration-200"
             >
               {link.label}
             </a>
@@ -80,7 +79,7 @@ export default function Navbar() {
             href="#waitlist"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
-            className="px-5 py-2.5 rounded-full text-sm font-semibold text-[#1B263B] bg-[#A2D2FF] hover:bg-[#B7E4C7] transition-colors duration-300"
+            className="px-5 py-2.5 rounded-full text-sm font-semibold text-[#f5f0e8] bg-[#e07a3f] hover:bg-[#b05a25] transition-colors duration-300"
           >
             Unirme al Waitlist
           </motion.a>
@@ -94,15 +93,15 @@ export default function Navbar() {
         >
           <motion.span
             animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-            className="block w-5 h-0.5 bg-[#1B263B]"
+            className="block w-5 h-0.5 bg-[#f5f0e8]"
           />
           <motion.span
             animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="block w-5 h-0.5 bg-[#1B263B]"
+            className="block w-5 h-0.5 bg-[#f5f0e8]"
           />
           <motion.span
             animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-            className="block w-5 h-0.5 bg-[#1B263B]"
+            className="block w-5 h-0.5 bg-[#f5f0e8]"
           />
         </button>
       </div>
@@ -112,7 +111,7 @@ export default function Navbar() {
         initial={false}
         animate={menuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
         transition={{ duration: 0.28, ease: "easeInOut" }}
-        className="md:hidden overflow-hidden bg-[#FAF8F4]/95 backdrop-blur-xl border-t border-[#A2D2FF]/15"
+        className="md:hidden overflow-hidden bg-[#0f0f0f]/95 backdrop-blur-xl border-t border-[#e07a3f]/12"
       >
         <div className="px-6 py-4 flex flex-col gap-4">
           {links.map((link) => (
@@ -120,7 +119,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-sm font-medium text-[#1B263B]/65 hover:text-[#A2D2FF] transition-colors"
+              className="text-sm font-medium text-[#f5f0e8]/55 hover:text-[#e07a3f] transition-colors"
             >
               {link.label}
             </a>
@@ -128,7 +127,7 @@ export default function Navbar() {
           <a
             href="#waitlist"
             onClick={() => setMenuOpen(false)}
-            className="mt-2 px-5 py-3 rounded-full text-sm font-semibold text-white bg-[#1B263B] text-center"
+            className="mt-2 px-5 py-3 rounded-full text-sm font-semibold text-[#f5f0e8] bg-[#e07a3f] text-center"
           >
             Unirme al Waitlist
           </a>

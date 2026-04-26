@@ -43,8 +43,8 @@ const PILLARS = [
     description:
       "Frank implementa el modelo de Klaus R. Scherer sobre Vocal Affect Bursts para decodificar el estado emocional con mayor precisión que el análisis de texto.",
     tag: "Fundamento teórico",
-    color: "#A2D2FF",
-    bg: "#EBF5FF",
+    color: "#e07a3f",
+    bg: "rgba(224,122,63,0.08)",
   },
   {
     icon: LayersIcon,
@@ -52,8 +52,8 @@ const PILLARS = [
     description:
       "En lugar de compararte con poblaciones genéricas, Frank aprende TU voz. Cualquier desviación de tu patrón es detectada como señal, eliminando sesgos de género, cultura e idioma.",
     tag: "Anti-sesgo",
-    color: "#2F9E6A",
-    bg: "rgba(183,228,199,0.25)",
+    color: "#d4a96a",
+    bg: "rgba(212,169,106,0.08)",
   },
   {
     icon: BarChartIcon,
@@ -61,25 +61,25 @@ const PILLARS = [
     description:
       "Procesamos audio con Hume AI para análisis de afecto y ElevenLabs para síntesis de interlocutores de IA hiperrealistas. La inferencia ocurre en tiempo real bajo latencia sub-200ms.",
     tag: "Infraestructura",
-    color: "#A2D2FF",
-    bg: "#EBF5FF",
+    color: "#e07a3f",
+    bg: "rgba(224,122,63,0.08)",
   },
 ];
 
 const PIPELINE = [
-  { phase: "Captura", detail: "Audio → PCM 16kHz → preprocessing", color: "#A2D2FF" },
-  { phase: "Inferencia", detail: "Hume Vocal Analysis → 6 ejes de afecto", color: "#2F9E6A" },
-  { phase: "Normalización", detail: "Comparación vs. Línea Base propia", color: "#A2D2FF" },
-  { phase: "Insight", detail: "Feedback accionable — latencia < 200ms", color: "#2F9E6A" },
+  { phase: "Captura", detail: "Audio → PCM 16kHz → preprocessing", color: "#e07a3f" },
+  { phase: "Inferencia", detail: "Hume Vocal Analysis → 6 ejes de afecto", color: "#d4a96a" },
+  { phase: "Normalización", detail: "Comparación vs. Línea Base propia", color: "#e07a3f" },
+  { phase: "Insight", detail: "Feedback accionable — latencia < 200ms", color: "#d4a96a" },
 ];
 
 export default function ScienceSection() {
   return (
-    <section id="ciencia" className="relative py-28 px-6 bg-[#EBF5FF]/40 overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-px bg-gradient-to-r from-transparent via-[#A2D2FF]/40 to-transparent" />
+    <section id="ciencia" className="relative py-28 px-6 bg-[#0f0f0f] overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-px bg-gradient-to-r from-transparent via-[#e07a3f]/25 to-transparent" />
       <div
-        className="absolute inset-0 opacity-[0.025]"
-        style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #A2D2FF 1px, transparent 0)", backgroundSize: "44px 44px" }}
+        className="absolute inset-0 opacity-[0.018]"
+        style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #f5f0e8 1px, transparent 0)", backgroundSize: "44px 44px" }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -91,20 +91,20 @@ export default function ScienceSection() {
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#A2D2FF]/35 shadow-sm mb-6">
-            <span className="text-xs font-semibold text-[#1B263B]">Rigor científico</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1a1a1a] border border-[#e07a3f]/25 shadow-sm mb-6">
+            <span className="text-xs font-semibold text-[#f5f0e8]">Rigor científico</span>
           </div>
           <h2
-            className="text-4xl md:text-6xl font-bold mb-5 text-[#1B263B] tracking-tight leading-[1.05]"
+            className="text-4xl md:text-6xl font-bold mb-5 text-[#f5f0e8] tracking-tight leading-[1.05]"
             style={{ fontFamily: "var(--font-dm-sans)" }}
           >
             No es magia.
             <br />
-            <span className="inline-block bg-[#A2D2FF] text-[#1B263B] px-3 rounded-[10px]">Es ciencia paralingüística.</span>
+            <span className="inline-block bg-[#e07a3f] text-[#0f0f0f] px-3 rounded-[10px]">Es ciencia paralingüística.</span>
           </h2>
-          <p className="text-lg text-[#1B263B]/50 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-[#f5f0e8]/50 max-w-2xl mx-auto leading-relaxed">
             Frank no mide lo que dices. Mide{" "}
-            <span className="text-[#A2D2FF] font-semibold">cómo lo dices</span>{" "}
+            <span className="text-[#e07a3f] font-semibold">cómo lo dices</span>{" "}
             — el 55% de la comunicación que los modelos de lenguaje ignoran.
           </p>
         </motion.div>
@@ -120,7 +120,7 @@ export default function ScienceSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.55, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-                className="group p-7 rounded-[24px] bg-white border border-[#A2D2FF]/15 hover:border-[#A2D2FF]/40 hover:shadow-md transition-all duration-300"
+                className="group p-7 rounded-[24px] bg-[#1a1a1a] border border-[#e07a3f]/12 hover:border-[#e07a3f]/35 hover:shadow-md transition-all duration-300"
               >
                 <div className="flex items-start justify-between mb-5">
                   <div
@@ -140,10 +140,10 @@ export default function ScienceSection() {
                     {pillar.tag}
                   </span>
                 </div>
-                <h3 className="text-base font-bold text-[#1B263B]/90 mb-2.5" style={{ fontFamily: "var(--font-dm-sans)" }}>
+                <h3 className="text-base font-bold text-[#f5f0e8]/90 mb-2.5" style={{ fontFamily: "var(--font-dm-sans)" }}>
                   {pillar.title}
                 </h3>
-                <p className="text-sm text-[#1B263B]/50 leading-relaxed">{pillar.description}</p>
+                <p className="text-sm text-[#f5f0e8]/50 leading-relaxed">{pillar.description}</p>
               </motion.div>
             );
           })}
@@ -155,13 +155,13 @@ export default function ScienceSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-          className="bg-white rounded-[24px] border border-[#A2D2FF]/20 p-8 shadow-sm"
+          className="bg-[#1a1a1a] rounded-[24px] border border-[#e07a3f]/15 p-8 shadow-sm"
         >
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-8 h-8 rounded-full bg-[#EBF5FF] border border-[#A2D2FF]/30 flex items-center justify-center">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#A2D2FF]" />
+            <div className="w-8 h-8 rounded-full bg-[#e07a3f]/10 border border-[#e07a3f]/25 flex items-center justify-center">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#e07a3f]" />
             </div>
-            <h3 className="text-base font-bold text-[#1B263B]/85" style={{ fontFamily: "var(--font-dm-sans)" }}>
+            <h3 className="text-base font-bold text-[#f5f0e8]/85" style={{ fontFamily: "var(--font-dm-sans)" }}>
               Pipeline de análisis — Tiempo real
             </h3>
           </div>
@@ -183,8 +183,8 @@ export default function ScienceSection() {
                   </div>
                   {i < PIPELINE.length - 1 && (
                     <div className="hidden md:flex flex-1 items-center gap-1 ml-1">
-                      <div className="flex-1 h-px bg-gradient-to-r from-[#A2D2FF]/40 to-[#A2D2FF]/10" />
-                      <div className="w-1 h-1 rounded-full bg-[#A2D2FF]/40" />
+                      <div className="flex-1 h-px bg-gradient-to-r from-[#e07a3f]/40 to-[#e07a3f]/10" />
+                      <div className="w-1 h-1 rounded-full bg-[#e07a3f]/40" />
                     </div>
                   )}
                 </div>
@@ -192,7 +192,7 @@ export default function ScienceSection() {
                   <p className="text-sm font-bold mb-1" style={{ color: item.color, fontFamily: "var(--font-dm-sans)" }}>
                     {item.phase}
                   </p>
-                  <p className="text-xs text-[#1B263B]/40 leading-relaxed" style={{ fontFamily: "var(--font-dm-mono)" }}>
+                  <p className="text-xs text-[#f5f0e8]/40 leading-relaxed" style={{ fontFamily: "var(--font-dm-mono)" }}>
                     {item.detail}
                   </p>
                 </div>
@@ -201,13 +201,13 @@ export default function ScienceSection() {
           </div>
 
           {/* Privacy note */}
-          <div className="mt-8 pt-6 border-t border-[#A2D2FF]/15 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <div className="mt-8 pt-6 border-t border-[#e07a3f]/12 flex flex-col sm:flex-row items-start sm:items-center gap-3">
             <div
               className="px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5"
               style={{
-                background: "rgba(47,158,106,0.1)",
-                border: "1px solid rgba(47,158,106,0.2)",
-                color: "#2F9E6A",
+                background: "rgba(224,122,63,0.10)",
+                border: "1px solid rgba(224,122,63,0.20)",
+                color: "#e07a3f",
                 fontFamily: "var(--font-dm-mono)",
               }}
             >
@@ -217,9 +217,9 @@ export default function ScienceSection() {
               </svg>
               Privacidad por diseño
             </div>
-            <p className="text-xs text-[#1B263B]/40 leading-relaxed">
+            <p className="text-xs text-[#f5f0e8]/40 leading-relaxed">
               Tus datos de voz son convertidos a{" "}
-              <span className="text-[#A2D2FF] font-semibold">vectores numéricos</span>, no almacenados como grabaciones. Nadie escucha tu audio — ni nosotros.
+              <span className="text-[#e07a3f] font-semibold">vectores numéricos</span>, no almacenados como grabaciones. Nadie escucha tu audio — ni nosotros.
             </p>
           </div>
         </motion.div>
