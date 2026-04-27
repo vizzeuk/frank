@@ -109,40 +109,24 @@ const TABS: TabData[] = [
   },
   {
     id: "coaching",
-    label: "EXECUTIVE COACHING",
-    triggerLabel: "Sesión ejecutiva",
-    triggerDetail: "Ana Torres · CEO · Inversores",
+    label: "MÉTRICAS CENTRALIZADAS",
+    triggerLabel: "Reporte de equipo",
+    triggerDetail: "Comercial · Q2 · 12 activos",
     terminalLines: [
-      "> Perfil ejecutivo  |  Ana Torres  |  CEO",
-      "> Simulación: Presentación a inversores",
-      "> Analizando performance en tiempo real...",
+      "> Equipo: Comercial  |  Ciclo: Semana 8",
+      "> Miembros activos: 12 / 15",
+      "> Comparando vs. línea base grupal...",
       "",
-      "  autoridad_vocal →  8.4/10  ✓",
-      "  control_emoc.   →  7.9/10  ✓",
-      "  engagement       →  6.2/10  ⚠  (umbral: 7.0)",
-      "  credibilidad     →  8.1/10  ✓",
+      "  confianza vocal   →  +48%   ✓",
+      "  estrés promedio   →  −39%   ✓",
+      "  pausas estrat.    →  +2.1x  ✓",
+      "  ritmo de habla    →  −14%   (óptimo)  ✓",
       "",
-      "> Alerta: descenso de tono en puntos clave",
-      "> Insight: Mayor énfasis en métricas financieras",
+      "> Top performer:  María G.  (+72% confianza)",
+      "> Alerta:  Pedro S.  — sesiones insuficientes",
     ],
-    nodes: [
-      { id: "exec", label: "ANA TORRES · CEO", x: 12, y: 10, type: "input" },
-      { id: "sim", label: "SIMULACIÓN INVERSORES", x: 55, y: 8, type: "input" },
-      { id: "realtime", label: "ANÁLISIS EN VIVO", x: 12, y: 40, type: "process", highlight: true },
-      { id: "engagement", label: "ENGAGEMENT: 6.2 ⚠", x: 55, y: 40, type: "process", highlight: true },
-      { id: "authority", label: "AUTORIDAD: 8.4 ✓", x: 12, y: 70, type: "output" },
-      { id: "alert2", label: "ALERTA: TONO", x: 55, y: 70, type: "process" },
-      { id: "report", label: "REPORTE EJECUTIVO", x: 30, y: 90, type: "output" },
-    ],
-    edges: [
-      { from: "exec", to: "realtime" },
-      { from: "sim", to: "realtime" },
-      { from: "realtime", to: "engagement" },
-      { from: "realtime", to: "authority" },
-      { from: "engagement", to: "alert2" },
-      { from: "authority", to: "report" },
-      { from: "alert2", to: "report" },
-    ],
+    nodes: [],
+    edges: [],
   },
 ];
 
@@ -399,15 +383,146 @@ function NeuralGraphPanel({ tab }: { tab: TabData }) {
   );
 }
 
+/* ─── Metrics Dashboard Panel ─── */
+const TEAM_MEMBERS = [
+  { name: "María G.",  role: "HRBP Lead",  sessions: 15, conf: 72, stress: 61 },
+  { name: "Carlos M.", role: "Senior PM",  sessions: 12, conf: 55, stress: 46 },
+  { name: "Ana T.",    role: "CEO",         sessions: 8,  conf: 38, stress: 31 },
+  { name: "Luis R.",   role: "Sales Lead",  sessions: 5,  conf: 18, stress: 22 },
+];
+
+function MetricsDashboardPanel() {
+  return (
+    <div className="flex-1 bg-[#0a0a0a] flex flex-col overflow-hidden" style={{ minHeight: 380 }}>
+      {/* Top bar */}
+      <div className="flex items-center justify-between px-5 py-3 border-b border-white/5 flex-shrink-0">
+        <span className="text-[11px] font-bold tracking-widest text-[#f5f0e8]/30 uppercase" style={{ fontFamily: "var(--font-dm-mono)" }}>
+          Frank · HR Dashboard
+        </span>
+        <div className="flex items-center gap-1.5">
+          <div className="w-1.5 h-1.5 rounded-full bg-[#e07a3f] animate-pulse" />
+          <span className="text-[10px] text-[#f5f0e8]/25" style={{ fontFamily: "var(--font-dm-mono)" }}>En vivo</span>
+        </div>
+      </div>
+
+      <div className="flex-1 overflow-hidden p-5 flex flex-col gap-4">
+        {/* KPI cards */}
+        <div className="grid grid-cols-3 gap-3">
+          {[
+            { label: "Empleados activos", value: "12", color: "#e07a3f" },
+            { label: "Mejora promedio",   value: "+48%", color: "#e07a3f" },
+            { label: "Sesiones / mes",    value: "89",   color: "#d4a96a" },
+          ].map((kpi, i) => (
+            <motion.div
+              key={kpi.label}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.08, duration: 0.35 }}
+              className="rounded-[12px] p-3"
+              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(224,122,63,0.12)" }}
+            >
+              <div className="text-lg font-bold" style={{ color: kpi.color, fontFamily: "var(--font-dm-mono)" }}>
+                {kpi.value}
+              </div>
+              <div className="text-[10px] text-[#f5f0e8]/35 mt-0.5" style={{ fontFamily: "var(--font-dm-mono)" }}>
+                {kpi.label}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Table header */}
+        <div className="grid items-center px-3 pb-2 border-b border-[#f5f0e8]/06"
+          style={{ gridTemplateColumns: "1fr 70px 70px 48px" }}>
+          {["Empleado", "Confianza", "Estrés", "Ses."].map((h, i) => (
+            <span key={h} className={`text-[9px] font-bold uppercase tracking-widest ${i === 0 ? "text-[#f5f0e8]/25" : i === 1 ? "text-[#e07a3f]/60 text-right" : i === 2 ? "text-[#d4a96a]/60 text-right" : "text-[#f5f0e8]/20 text-right"}`}
+              style={{ fontFamily: "var(--font-dm-mono)" }}>
+              {h}
+            </span>
+          ))}
+        </div>
+
+        {/* Rows */}
+        <div className="flex flex-col gap-1">
+          {TEAM_MEMBERS.map((m, i) => (
+            <motion.div
+              key={m.name}
+              initial={{ opacity: 0, x: -12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 + i * 0.07, duration: 0.35 }}
+              className="grid items-center px-3 py-2.5 rounded-[10px] transition-colors hover:bg-white/[0.02]"
+              style={{ gridTemplateColumns: "1fr 70px 70px 48px" }}
+            >
+              {/* Name */}
+              <div>
+                <div className="text-xs font-semibold text-[#f5f0e8]/80">{m.name}</div>
+                <div className="text-[9px] text-[#f5f0e8]/28 mt-0.5" style={{ fontFamily: "var(--font-dm-mono)" }}>{m.role}</div>
+              </div>
+
+              {/* Confianza */}
+              <div className="flex flex-col items-end gap-1">
+                <span className="text-[10px] font-bold text-[#e07a3f]" style={{ fontFamily: "var(--font-dm-mono)" }}>↑{m.conf}%</span>
+                <div className="w-full h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${Math.min(m.conf, 100)}%` }}
+                    transition={{ delay: 0.4 + i * 0.07, duration: 0.7, ease: "easeOut" }}
+                    className="h-full rounded-full"
+                    style={{ background: "#e07a3f" }}
+                  />
+                </div>
+              </div>
+
+              {/* Estrés */}
+              <div className="flex flex-col items-end gap-1">
+                <span className="text-[10px] font-bold text-[#d4a96a]" style={{ fontFamily: "var(--font-dm-mono)" }}>↓{m.stress}%</span>
+                <div className="w-full h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${Math.min(m.stress, 100)}%` }}
+                    transition={{ delay: 0.4 + i * 0.07, duration: 0.7, ease: "easeOut" }}
+                    className="h-full rounded-full"
+                    style={{ background: "#d4a96a" }}
+                  />
+                </div>
+              </div>
+
+              {/* Sessions */}
+              <div className="text-right">
+                <span className="text-[10px] text-[#f5f0e8]/30" style={{ fontFamily: "var(--font-dm-mono)" }}>{m.sessions}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Main Section ─── */
 export default function B2BSection() {
   const [activeTabId, setActiveTabId] = useState<TabId>("talent");
   const activeTab = TABS.find((t) => t.id === activeTabId)!;
 
   const stats = [
-    { value: "$1.2M", label: "Costo promedio de una mala contratación senior" },
-    { value: "73%", label: "De líderes fracasan por Human Skills, no por expertise técnico" },
-    { value: "0 métricas", label: "Tienen la mayoría de programas de capacitación actuales" },
+    {
+      value: "$240K",
+      text: "El costo promedio documentado de reemplazar a un ejecutivo senior.",
+      source: "Calyptus 2025",
+      href: "https://www.calyptus.co/blog/the-cost-of-a-bad-hire",
+    },
+    {
+      value: "89%",
+      text: "de los fracasos laborales no son por falta de conocimiento técnico. Son por déficit interpersonal.",
+      source: "Leadership IQ",
+      href: "https://www.leadershipiq.com/blogs/leadershipiq/35354241-why-new-hires-fail-emotional-intelligence-vs-skills",
+    },
+    {
+      value: "8%",
+      text: "Sólo 8% de los CEOs ve retorno real en su inversión de capacitación.",
+      source: "ATD",
+      href: "https://elearningindustry.com/money-spending-or-money-making-whats-your-learning-strategy-doing",
+    },
   ];
 
   return (
@@ -425,18 +540,18 @@ export default function B2BSection() {
           className="text-center mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0f0f0f] border border-[#e07a3f]/25 mb-6">
-            <span className="text-xs font-semibold text-[#e07a3f]">Para Directores de RRHH y Talent</span>
+            <span className="text-xs font-semibold text-[#e07a3f]">Para reclutadores y HRBP</span>
           </div>
           <h2
             className="text-4xl md:text-6xl font-bold mb-5 text-[#f5f0e8] tracking-tight leading-[1.05]"
             style={{ fontFamily: "var(--font-dm-sans)" }}
           >
-            Convierte la intuición
+            Mide habilidades humanas
             <br />
-            <span className="inline-block bg-[#e07a3f] text-[#0f0f0f] px-3 rounded-[10px]">en datos objetivos.</span>
+            <span className="inline-block bg-[#e07a3f] text-[#0f0f0f] px-3 rounded-[10px]">con datos objetivos.</span>
           </h2>
           <p className="text-lg text-[#f5f0e8]/50 max-w-2xl mx-auto leading-relaxed">
-            Filtra talento y capacita equipos con métricas objetivas de inteligencia interpersonal. Sin sesgos de género, cultura ni entrevistador.
+            Filtra talento, capacita equipos y mide las mejoras sesión tras sesión con métricas objetivas de inteligencia interpersonal.
           </p>
         </motion.div>
 
@@ -449,10 +564,10 @@ export default function B2BSection() {
           className="mb-16 rounded-[24px] overflow-hidden border border-[#e07a3f]/15"
           style={{ boxShadow: "0 8px 48px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)" }}
         >
-          {/* Main panels */}
-          <div className="flex flex-col lg:flex-row" style={{ minHeight: 420 }}>
-            {/* Terminal (dark) */}
-            <div className="lg:w-[58%] flex-shrink-0" style={{ minHeight: 380 }}>
+          {/* Main panels — fixed height on desktop to prevent layout shift between tabs */}
+          <div className="flex flex-col lg:flex-row lg:h-[420px]" style={{ minHeight: 380 }}>
+            {/* Terminal — always left, 50% */}
+            <div className="lg:w-1/2 flex-shrink-0 lg:h-full" style={{ minHeight: 380 }}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTabId}
@@ -471,19 +586,32 @@ export default function B2BSection() {
             {/* Divider */}
             <div className="w-px bg-gradient-to-b from-[#f5f0e8]/05 via-[#f5f0e8]/03 to-[#f5f0e8]/05 hidden lg:block" />
 
-            {/* Graph */}
+            {/* Right — dashboard or neural graph */}
             <div className="flex-1 flex" style={{ minHeight: 380 }}>
               <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTabId + "-graph"}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="flex-1 flex"
-                >
-                  <NeuralGraphPanel tab={activeTab} />
-                </motion.div>
+                {activeTabId === "coaching" ? (
+                  <motion.div
+                    key="dashboard"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="flex-1 flex"
+                  >
+                    <MetricsDashboardPanel />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key={activeTabId + "-graph"}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="flex-1 flex"
+                  >
+                    <NeuralGraphPanel tab={activeTab} />
+                  </motion.div>
+                )}
               </AnimatePresence>
             </div>
           </div>
@@ -541,7 +669,18 @@ export default function B2BSection() {
                 >
                   {s.value}
                 </span>
-                <p className="text-sm text-[#f5f0e8]/50 leading-relaxed">{s.label}</p>
+                <p className="text-sm text-[#f5f0e8]/50 leading-relaxed">
+                  {s.text}{" "}
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#e07a3f]/60 hover:text-[#e07a3f] transition-colors duration-200 underline underline-offset-2 decoration-[#e07a3f]/30 text-xs"
+                    style={{ fontFamily: "var(--font-dm-mono)" }}
+                  >
+                    {s.source}
+                  </a>
+                </p>
               </motion.div>
             ))}
           </motion.div>

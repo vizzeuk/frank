@@ -214,7 +214,7 @@ function ConversationUI() {
       {latest && (
         <div className="px-4 py-3 border-t border-[#e07a3f]/12 bg-[#111111]/80 space-y-2">
           <p className="text-[9px] font-bold text-[#f5f0e8]/30 uppercase tracking-wider" style={{ fontFamily: "var(--font-dm-mono)" }}>
-            Frank · Tiempo real
+            Frank · Análisis paralingüístico
           </p>
           {[
             { label: "Estrés", value: latest.metrics.stress, warn: latest.metrics.stress > 60 },
@@ -283,7 +283,7 @@ function DashboardUI() {
       <div className="px-5 py-3.5 border-b border-[#e07a3f]/12 bg-[#111111] flex items-center justify-between">
         <div>
           <p className="text-xs font-bold text-[#f5f0e8]" style={{ fontFamily: "var(--font-dm-sans)" }}>
-            frank — Dashboard de Poder
+            frank — Dashboard de Performance
           </p>
           <p className="text-[10px] text-[#f5f0e8]/35" style={{ fontFamily: "var(--font-dm-mono)" }}>
             12 sesiones · Semana 1–6
@@ -374,8 +374,8 @@ const STEPS = [
     title: "Onboarding de ADN Vocal",
     subtitle: "Tu huella de voz única",
     description:
-      "Frank aprende tu ritmo natural, tonalidad y patrones de pausa en una sesión de 8 minutos. Nunca te compara con nadie más.",
-    duration: "8 minutos",
+      "Frank aprende tu ritmo natural, tonalidad y patrones de pausa en una sesión de 4 minutos. Tus datos son encriptados y utilizados para la personalización de tu experiencia.",
+    duration: "4 minutos",
     benefit: "Línea Base sin sesgos",
     color: "#e07a3f",
     bg: "rgba(224,122,63,0.08)",
@@ -387,7 +387,7 @@ const STEPS = [
     subtitle: "Simulador de vuelo conversacional",
     description:
       "Practica con interlocutores de IA calibrados: agresivos, empáticos, evasivos. Feedback paralingüístico en tiempo real.",
-    duration: "15–45 min / sesión",
+    duration: "5–10 min / Sesión",
     benefit: "Errores sin consecuencias",
     color: "#d4a96a",
     bg: "rgba(212,169,106,0.08)",
@@ -395,10 +395,10 @@ const STEPS = [
   },
   {
     number: "03",
-    title: "Dashboard de Poder",
+    title: "Dashboard de Performance",
     subtitle: "Análisis y evolución profundos",
     description:
-      "Visualiza tu evolución en 6 ejes paralingüísticos. Identifica exactamente en qué momento del audio tu voz te traicionó.",
+      "Visualiza tu evolución en múltiple ejes paralingüísticos. Identifica exactamente en qué momento cometes los errores. Comparate con sesiones anteriores.",
     duration: "Post-sesión",
     benefit: "Mejora medible y accionable",
     color: "#c07848",

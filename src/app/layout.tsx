@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   title: "Frank — Simulador de Vuelo para Conversaciones Humanas",
   description:
     "La primera IA que entrena tus Human Skills analizando tu voz, no solo tus palabras. Sin sesgos culturales. Sin riesgos reales.",
+  icons: {
+    icon: "/logo-frank/icon-frank.png",
+    apple: "/logo-frank/icon-frank.png",
+  },
   openGraph: {
     title: "Frank — Simulador de Vuelo para Conversaciones Humanas",
     description:

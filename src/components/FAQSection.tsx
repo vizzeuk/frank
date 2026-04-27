@@ -5,17 +5,25 @@ import { useState } from "react";
 
 const FAQS = [
   {
+    question: "¿Cómo funciona una sesión de Frank?",
+    answer:
+      "Eliges un escenario: una evaluación de desempeño, una negociación, un cliente difícil. El interlocutor de IA reacciona en tiempo real con la presión emocional del contexto. Al terminar, el Dashboard descompone tu desempeño: tono, ritmo, pausas, coherencia bajo estrés. No hay script correcto. Te mostramos tu comportamiento real y cómo evoluciona.",
+    tag: "Producto",
+    tagColor: "#e07a3f",
+    tagBg: "rgba(224,122,63,0.10)",
+  },
+  {
     question: "¿Cómo protege Frank mis datos de voz?",
     answer:
-      "Tu audio nunca se almacena como grabación. En el momento de la captura, Frank convierte la señal acústica en vectores numéricos de alta dimensión. Estos vectores son cifrados con AES-256 y vinculados exclusivamente a tu cuenta. Es técnicamente imposible reconstruir tu voz a partir de los datos que guardamos.",
+      "Tus grabaciones no se comparten, no se venden y no se usan para entrenar modelos de terceros. El análisis ocurre en servidores encriptados y tú controlas tu historial desde la cuenta. Si quieres borrar todo, es un clic.",
     tag: "Privacidad",
     tagColor: "#e07a3f",
     tagBg: "rgba(224,122,63,0.10)",
   },
   {
-    question: "¿Funciona en cualquier idioma y acento?",
+    question: "¿Funciona en cualquier idioma?",
     answer:
-      "Sí. Gracias al sistema de Línea Base Individual, Frank no compara tu voz con ningún estándar global — aprende TUS patrones en TU idioma. El análisis paralingüístico trasciende el idioma: el estrés vocal suena igual en Caracas que en Tokio.",
+      "Sí. Frank analiza cómo hablas, no qué dices. El sistema mide patrones acústicos: tensión vocal, ritmo, pausas, variación de tono. Esos fenómenos no dependen del idioma. Lo que Frank aprende de tu voz en español funciona igual que lo que aprendería en inglés, portugués o cualquier otro idioma. No hay un acento correcto ni un estándar de referencia externo.",
     tag: "Alcance global",
     tagColor: "#d4a96a",
     tagBg: "rgba(212,169,106,0.10)",
@@ -23,7 +31,7 @@ const FAQS = [
   {
     question: "¿Qué diferencia a Frank de apps de coaching de voz?",
     answer:
-      "Las apps genéricas te comparan con estándares de 'habla perfecta' definidos por poblaciones occidentales de habla inglesa. Frank no tiene un ideal externo. Analiza tu desviación de tu propio baseline en conversaciones de alta presión, en tiempo real.",
+      "Las apps de coaching miden tu voz contra un estándar de \"habla perfecta\" diseñado para otro idioma, otra cultura y otro contexto. Frank no tiene ideal externo. Mide tu desviación respecto a tu propio baseline, en conversaciones de alta presión, en tiempo real. La comparación eres tú ayer versus tú hoy.",
     tag: "Diferenciador",
     tagColor: "#d4a96a",
     tagBg: "rgba(212,169,106,0.10)",
@@ -31,7 +39,7 @@ const FAQS = [
   {
     question: "¿Cuántas sesiones necesito antes de ver resultados?",
     answer:
-      "Usuarios reportan cambios perceptibles a partir de la tercera sesión (90 minutos de práctica total). Los datos del Dashboard muestran evolución desde la primera sesión. Cambios de comportamiento medibles en contextos reales aparecen entre las semanas 3 y 6 de uso consistente.",
+      "Desde la primera sesión el Dashboard ya te está mostrando datos: cómo varía tu tono bajo presión, dónde aparecen las pausas, qué pasa con tu ritmo cuando la conversación se complica. No tienes que esperar para saber si algo está cambiando. Lo que tarda más en llegar son los cambios de comportamiento fuera de Frank, en conversaciones reales. Ese tipo de transferencia depende de la consistencia de práctica, no del número de sesiones.",
     tag: "Resultados",
     tagColor: "#e07a3f",
     tagBg: "rgba(224,122,63,0.10)",
@@ -39,18 +47,34 @@ const FAQS = [
   {
     question: "¿Puedo usar Frank si tengo una voz atípica?",
     answer:
-      "Absolutamente. El diseño de Línea Base Individual fue concebido precisamente para eliminar este sesgo. Frank no juzga tu voz — aprende de ella. Usuarios con disfluencias, acentos marcados o condiciones como disartria leve han encontrado Frank especialmente valioso.",
+      "Sí, y no es un eufemismo. Frank no tiene una voz ideal en la cabeza. El sistema aprende tus patrones específicos y mide variaciones respecto a ellos. Un acento marcado, una disfluencia o cualquier particularidad vocal no son ruido para Frank, son el punto de partida.",
     tag: "Inclusividad",
     tagColor: "#e07a3f",
     tagBg: "rgba(224,122,63,0.10)",
   },
   {
+    question: "¿Frank reemplaza al coaching humano?",
+    answer:
+      "No, y no pretende hacerlo. Frank resuelve el problema del volumen de práctica: ningún coach puede darte 40 conversaciones difíciles por semana. Frank sí.",
+    tag: "Alcance",
+    tagColor: "#d4a96a",
+    tagBg: "rgba(212,169,106,0.10)",
+  },
+  {
     question: "¿Cuál es el modelo de precios para empresas?",
     answer:
-      "Ofrecemos licencias por asiento para equipos de 10+ personas, con dashboard centralizado de RRHH, reportes de evolución por área y acceso a API para integración con HRIS (SAP, Workday, BambooHR). Los precios dependen del tamaño del equipo. Agenda una demo y enviamos propuesta en 24h.",
+      "Ofrecemos licencias por asiento para equipos de 10 o más personas, con dashboard centralizado de RRHH, reportes de evolución por área y acceso a API para integración con HRIS (SAP, Workday, BambooHR). Los precios dependen del tamaño del equipo. Agenda una demo y coordinamos desde ahí.",
     tag: "Empresas",
     tagColor: "#d4a96a",
     tagBg: "rgba(212,169,106,0.10)",
+  },
+  {
+    question: "¿Necesito experiencia técnica para usar Frank?",
+    answer:
+      "Nada. Si puedes hacer una llamada, puedes usar Frank. La única tecnología que necesitas es tu voz.",
+    tag: "Accesibilidad",
+    tagColor: "#e07a3f",
+    tagBg: "rgba(224,122,63,0.10)",
   },
 ];
 
@@ -127,7 +151,6 @@ export default function FAQSection() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-px bg-gradient-to-r from-transparent via-[#e07a3f]/20 to-transparent" />
 
       <div className="max-w-3xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -149,7 +172,6 @@ export default function FAQSection() {
           </p>
         </motion.div>
 
-        {/* FAQ items */}
         <div className="flex flex-col gap-2.5">
           {FAQS.map((faq, i) => (
             <motion.div
@@ -157,7 +179,7 @@ export default function FAQSection() {
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.45, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+              transition={{ duration: 0.45, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
             >
               <FAQItem
                 faq={faq}
@@ -167,7 +189,6 @@ export default function FAQSection() {
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

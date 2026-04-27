@@ -156,7 +156,7 @@ const NET_NODES = [
   {
     id: "f0",     label: "ΔF0",       desc: "Indicador de arousal",      unit: "Variación de pitch",
     insight: "Compresión >30% bajo presión indica regulación emocional comprometida",
-    x: 18, y: 54, color: "#e07a3f", cardPos: "right" as CardPos,
+    x: 18, y: 54, color: "#e07a3f", cardPos: "above" as CardPos,
   },
   {
     id: "pause",  label: "Pausas",    desc: "Predictor de carga cognitiva", unit: "Distribución temporal",
@@ -181,7 +181,7 @@ const NET_NODES = [
   {
     id: "pitch",  label: "Pitch",     desc: "Variación tonal dinámica",  unit: "Rango F0 activo",
     insight: "Voz plana o caótica bajo presión = regulación vocal comprometida",
-    x: 82, y: 54, color: "#d4a96a", cardPos: "left" as CardPos,
+    x: 82, y: 54, color: "#d4a96a", cardPos: "above" as CardPos,
   },
 ];
 
@@ -517,9 +517,9 @@ export default function HeroSection() {
           transition={{ duration: 0.65, delay: 0.14, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
           className="text-sm sm:text-base lg:text-lg text-[#f5f0e8]/50 max-w-xl leading-relaxed mb-7"
         >
-          La primera IA que entrena tus Human Skills analizando tu{" "}
-          <strong className="text-[#f5f0e8] font-semibold">voz</strong>, no solo tus palabras.
-          Sin sesgos culturales. Sin riesgos reales.
+          Entrena tus habilidades interpersonales analizando tu{" "}
+          <strong className="text-[#f5f0e8] font-semibold">voz</strong>, no tus palabras.
+          Simula la presión real antes de que cueste caro.
         </motion.p>
 
         {/* Voice wave */}
@@ -531,7 +531,7 @@ export default function HeroSection() {
         >
           <VoiceWave />
           <p className="text-[9px] text-[#f5f0e8]/20 tracking-[0.2em] uppercase" style={{ fontFamily: "var(--font-dm-mono)" }}>
-            Análisis paralingüístico · Tiempo real
+            Análisis paralingüístico en Tiempo real
           </p>
         </motion.div>
 
@@ -603,12 +603,12 @@ export default function HeroSection() {
                       Un momento...
                     </span>
                   ) : (
-                    "Reservar mi lugar →"
+                    "Unete a la waitlist →"
                   )}
                 </motion.button>
               </div>
               <p className="text-center text-[10px] text-[#f5f0e8]/22 mt-3" style={{ fontFamily: "var(--font-dm-mono)" }}>
-                Sin tarjeta · Sin compromiso · 100% privado
+                Tus datos están protegidos bajo la Ley N° 19.628 de Protección en Chile.
               </p>
             </form>
           )}
